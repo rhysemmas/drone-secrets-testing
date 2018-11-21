@@ -6,7 +6,7 @@ pipeline:
       - MYSQL_ROOT_PASSWORD
       - MYSQL_DATABASE
     commands: 
-      - docker run --name mysql-test -e MYSQL_ROOT_PASSWORD=$$MYSQL_ROOT_PASSWORD -e MYSQL_DATABASE=$$MYSQL_DATABASE mysql:latest -d
+      - docker run --name mysql-test -e MYSQL_ROOT_PASSWORD=$$MYSQL_ROOT_PASSWORD -e MYSQL_DATABASE=$$MYSQL_DATABASE -d mysql:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     when:
