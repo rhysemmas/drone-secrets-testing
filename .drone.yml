@@ -2,9 +2,9 @@ pipeline:
 
   start:
     image: docker
-    secrets: [ MYSQL_ROOT_PASSWORD ]
+    secrets: [ mysql_root_password, mysql_database ]
     commands: 
-      - docker run --name mysql-test -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -e MYSQL_DATABASE=${MYSQL_DATABASE} mysql:latest
+      - docker run --name mysql-test -e MYSQL_ROOT_PASSWORD=${mysql_root_password} -e MYSQL_DATABASE=${mysql_database} mysql:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     when:
@@ -13,9 +13,9 @@ pipeline:
 
   test:
     image: docker
-    secrets: [ MYSQL_ROOT_PASSWORD ]
+    secrets: [ mysql_root_password ]
     commands:
-      - docker exec mysql-test mysql -e "show databases" -u root --password=${MYSQL_ROOT_PASSWORD}
+      - docker exec mysql-test mysql -e "show databases" -u root --password=${mysql_root_password}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     when:
