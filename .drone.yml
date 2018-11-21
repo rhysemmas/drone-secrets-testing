@@ -3,7 +3,7 @@ pipeline:
   start:
     image: docker
     commands: 
-      - docker run --name mysql-test -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -e MYSQL_DATABASE=${MYSQL_DATABASE} -d mysql:latest
+      - docker run --name mysql-test -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -e MYSQL_DATABASE=${MYSQL_DATABASE} mysql:latest
     secrets: [ MYSQL_ROOT_PASSWORD, MYSQL_DATABASE ]
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
